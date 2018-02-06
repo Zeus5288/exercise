@@ -34,7 +34,7 @@ for (var i=0,l=aLi.length;i<l;i++) {
 var z = 1;   //js中可以处理的最大数为2^23
 
 function drag(obj) {
-	obj.onmousedown = function (e) {
+	obj.ontouchstart = function (e) {
 		// console.log(this);//this作用域
 		// console.log(arguments[0]);//事件返回的实参列表
 		// console.log(e.clientX);
@@ -50,7 +50,7 @@ function drag(obj) {
 		//更改鼠标拖拽的li的层级
 		this.style.zIndex = z++;
 
-		document.onmousemove = function (e) {
+		document.ontouchmove = function (e) {
 			var e = e || window.event;
 			var _left = e.clientX - x + l,
 			    _top = e.clientY - y + t;
@@ -73,9 +73,9 @@ function drag(obj) {
 			// nearLi(obj).style.border = "1px solid red";//这是错误的写法，会报错
 		}
 		//鼠标抬起解绑事件
-		document.onmouseup = function () {
-			document.onmousemove = null;
-			document.onmouseup = null;
+		document.ontouchend = function () {
+			document.ontouchmove = null;
+			document.ontouchend = null;
 			//4、鼠标抬起交换位置
 			var oLi = nearLi(obj);
 			var tmp = 0;
